@@ -35,7 +35,32 @@ ssh-picker --config /path/to/custom/ssh_config
 
 ## インストール
 
+### バイナリダウンロード（推奨）
+
+[GitHub Releases](https://github.com/ChikaKakazu/ssh-picker/releases)から最新版をダウンロード：
+
 ```bash
+# Linux (x86_64)
+curl -L -o ssh-picker https://github.com/ChikaKakazu/ssh-picker/releases/latest/download/ssh-picker-linux-x86_64
+chmod +x ssh-picker
+sudo mv ssh-picker /usr/local/bin/
+
+# macOS (Intel)
+curl -L -o ssh-picker https://github.com/ChikaKakazu/ssh-picker/releases/latest/download/ssh-picker-darwin-x86_64
+chmod +x ssh-picker
+sudo mv ssh-picker /usr/local/bin/
+
+# macOS (Apple Silicon)
+curl -L -o ssh-picker https://github.com/ChikaKakazu/ssh-picker/releases/latest/download/ssh-picker-darwin-arm64
+chmod +x ssh-picker
+sudo mv ssh-picker /usr/local/bin/
+```
+
+### ソースからビルド
+
+```bash
+git clone https://github.com/ChikaKakazu/ssh-picker.git
+cd ssh-picker
 cargo build --release
 ```
 

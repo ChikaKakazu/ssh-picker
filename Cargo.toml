@@ -2,8 +2,23 @@
 name = "ssh-picker"
 version = "0.1.0"
 edition = "2024"
+description = "Interactive SSH host picker from ~/.ssh/config"
+license = "MIT"
+repository = "https://github.com/ChikaKakazu/ssh-picker"
+homepage = "https://github.com/ChikaKakazu/ssh-picker"
+authors = ["ChikaKakazu"]
+keywords = ["ssh", "cli", "terminal", "config", "interactive"]
+categories = ["command-line-utilities"]
+readme = "README.md"
 
 [dependencies]
 anyhow = "1.0.98"
 clap = { version = "4.5.40", features = ["derive"] }
 dialoguer = "0.11"
+
+[profile.release]
+strip = true
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
