@@ -1,1 +1,21 @@
+# Rust build artifacts
 /target
+
+# Release binaries (generated for GitHub Releases)
+ssh-picker-linux-*
+ssh-picker-windows-*
+ssh-picker-darwin-*
+*.exe
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*~
+*.bak
+*.tmp

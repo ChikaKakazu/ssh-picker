@@ -4,9 +4,7 @@ SSH設定ファイル（`~/.ssh/config`）からホストをインタラクテ�
 
 ## 機能
 
-- SSH設定ファイルの解析
 - ホスト一覧の表示
-- インタラクティブなホスト選択UI
 - 選択したホストへのSSH接続
 
 ## 使用方法
@@ -45,15 +43,9 @@ curl -L -o ssh-picker https://github.com/ChikaKakazu/ssh-picker/releases/latest/
 chmod +x ssh-picker
 sudo mv ssh-picker /usr/local/bin/
 
-# macOS (Intel)
-curl -L -o ssh-picker https://github.com/ChikaKakazu/ssh-picker/releases/latest/download/ssh-picker-darwin-x86_64
-chmod +x ssh-picker
-sudo mv ssh-picker /usr/local/bin/
-
-# macOS (Apple Silicon)
-curl -L -o ssh-picker https://github.com/ChikaKakazu/ssh-picker/releases/latest/download/ssh-picker-darwin-arm64
-chmod +x ssh-picker
-sudo mv ssh-picker /usr/local/bin/
+# Windows (PowerShell)
+Invoke-WebRequest -Uri "https://github.com/ChikaKakazu/ssh-picker/releases/latest/download/ssh-picker-windows-x86_64.exe" -OutFile "ssh-picker.exe"
+# パスの通ったディレクトリに移動するか、現在のディレクトリで実行
 ```
 
 ### ソースからビルド
@@ -64,12 +56,28 @@ cd ssh-picker
 cargo build --release
 ```
 
-実行可能ファイルは `target/release/ssh-picker` に生成されます。
+実行可能ファイル `target/release/ssh-picker` が生成されます。
 
-## 必要条件
+#### Windows環境でのビルド
 
-- Rust 2024 edition
-- SSH設定ファイル（`~/.ssh/config`）
+Windows環境でRustを使用してビルドする場合：
+
+```powershell
+git clone https://github.com/ChikaKakazu/ssh-picker.git
+cd ssh-picker
+cargo build --release
+```
+
+実行可能ファイル `target\release\ssh-picker.exe` が生成されます。
+
+## Rust version
+
+```bash
+> rustup -V
+rustup 1.28.2 (e4f3ad6f8 2025-04-28)
+info: This is the version for the rustup toolchain manager, not the rustc compiler.
+info: The currently active `rustc` version is `rustc 1.87.0 (17067e9ac 2025-05-09)`
+```
 
 ## SSH設定ファイルの例
 
