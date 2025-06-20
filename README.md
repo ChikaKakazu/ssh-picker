@@ -70,6 +70,35 @@ cargo build --release
 
 実行可能ファイル `target\release\ssh-picker.exe` が生成されます。
 
+## Windows セットアップ
+
+管理者権限でPowerShellを開いて、順次実行する
+
+```powershell
+# 現在のPATHを確認
+[Environment]::GetEnvironmentVariable("PATH", "Machine")
+
+# 追加するパス
+$newPath = "C:\Program Files\ssh-picker"
+
+# PATHに追加
+$currentPath = [Environment]::GetEnvironmentVariable("PATH", "Machine")
+[Environment]::SetEnvironmentVariable("PATH", "$currentPath;$newPath", "Machine")
+
+# 追加されたか確認
+[Environment]::GetEnvironmentVariable("PATH", "Machine") -split ';' | Where-Object { $_ -like "*ssh-picker*" }
+```
+
+新しくPowerShellを開きなおして確認
+
+```powershell
+# コマンドが使えるか確認
+Get-Command ssh-picker
+
+# 実行テスト
+ssh-picker
+```
+
 ## Rust version
 
 ```bash
