@@ -52,9 +52,20 @@ fn get_config_path(file_path: Option<String>) -> Result<String> {
     let config_path = match file_path {
         Some(path) => path,
         None => {
-            let home = std::env::var("HOME")
-                .map_err(|_| anyhow::anyhow!("HOME環境変数が設定されていません"))?;
-            format!("{}/.ssh/config", home)
+            let home = if cfg!(windows) {
+                std::env::var("USERPROFILE")
+                    .map_err(|_| anyhow::anyhow!("USERPROFILE環境変数が設定されていません"))?
+            } else {
+                std::env::var("HOME")
+                    .map_err(|_| anyhow::anyhow!("HOME環境変数が設定されていません"))?
+            };
+
+            let ssh_path = if cfg!(windows) {
+                format!("{}/.ssh/config", home)
+            } else {
+                format!("{}/.ssh/config", home)
+            };
+            ssh_path
         }
     };
 
